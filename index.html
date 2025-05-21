@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Predatoria - Kebun Binatang Virtual</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- AUDIO -->
+    <audio id="bg-music" autoplay>
+      <source src="song/S3.mp3" type="audio/mp3" />
+      Browser kamu tidak mendukung audio.
+    </audio>
+
+    <!-- TOMBOL -->
+    <!-- TOMBOL -->
+    <button id="speaker-btn" title="Hidupkan/Matikan Musik">🔇</button>
+    <button id="theme-btn" title="Ganti Tema">🎨</button>
+
+    <!-- TOMBOL QUIZ -->
+    <a href="quiz.html" id="quiz-btn" title="Mainkan Kuis Tebak Hewan!">🦁❓</a>
+
+    <img
+      src="https://media.tenor.com/efbi1EpFlVUAAAAi/bugcat-capoo.gif"
+      alt="Maskot Kiri"
+      class="maskot kiri"
+    />
+    <h1 class="judul-baru">Predatoria</h1>
+    <img
+      src="https://media.tenor.com/efbi1EpFlVUAAAAi/bugcat-capoo.gif"
+      alt="Maskot Kanan"
+      class="maskot-Kanan"
+    />
+
+    <!-- ABOUT US
+    <div class="section-box">
+      <div class="section">
+        <h2>ABOUT US 🧠</h2>
+        <ul class="about-list">
+          <li>
+            <strong>Nama:</strong> <span class="highlight">PREDATORIA</span>
+          </li>
+          <li>
+            <strong>Teknologi:</strong>
+            <span class="highlight">Augmented Reality</span>
+          </li>
+        </ul>
+      </div>
+    </div> -->
+
+    <!-- SCAN HERE -->
+    <div class="section">
+      <h2>SCAN HERE!</h2>
+      <div class="qr-container">
+        <img
+          src="https://media.giphy.com/media/VM1fcpu2bKs1e2Kdbj/giphy.gif"
+          alt="Maskot Kiri"
+          class="maskot kiri"
+        />
+
+        <div class="carousel-container">
+          <button class="nav-btn" id="prevBtn">⬅️</button>
+          <div class="carousel" id="carousel">
+            <div class="qr-item active">
+              <img src="song/Singa.png" alt="Singa" />
+              <h2>Singa</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/Bkutub.png" alt="Beruang Kutub" />
+              <h2>Beruang Kutub</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/harimau.png" alt="Harimau" />
+              <h2>Harimau</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/rubah.jpg" alt="Harimau" />
+              <h2>Rubah</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/uler.png" alt="Harimau" />
+              <h2>Ular</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/hiu.png" alt="Harimau" />
+              <h2>Hiu</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/Bhantu.jpg" alt="Harimau" />
+              <h2>Burung Hantu</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/elang.jpg" alt="Harimau" />
+              <h2>Elang</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/serigala.jpg" alt="Serigala" />
+              <h2>Serigala</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/kucing.jpg" alt="Serigala" />
+              <h2>Kucing</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/piranha.png" alt="Serigala" />
+              <h2>Piranha</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/kelelawar.png" alt="Serigala" />
+              <h2>Kelelawar</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/komodo.png" alt="Serigala" />
+              <h2>Komodo</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/buaya.jpg" alt="Serigala" />
+              <h2>Buaya</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/gagak.jpg" alt="Serigala" />
+              <h2>Gagak</h2>
+            </div>
+          </div>
+          <button class="nav-btn" id="nextBtn">➡️</button>
+        </div>
+
+        <img
+          src="https://media.giphy.com/media/VM1fcpu2bKs1e2Kdbj/giphy.gif"
+          alt="Maskot Kanan"
+          class="maskot kanan"
+        />
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        2025 Predatoria - Belajar dan bermain bersama hewan predator! by YBNS
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

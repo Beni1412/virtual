@@ -1,10 +1,12 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f2ffe6;
-  text-align: center;
-  padding: -10px;
-  transition: background-color 0.5s ease;
   font-family: 'Fredoka', sans-serif;
+  background-image: url('song/pohon.png');
+
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  text-align: center;
+  transition: background-color 0.5s ease;
 }
 
 h1 {

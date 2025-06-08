@@ -3,7 +3,516 @@
   <head>
     <meta charset="UTF-8" />
     <title>Predatoria - Kebun Binatang Virtual</title>
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: 'Fredoka', sans-serif;
+        background-image: url('song/pohon1.jpeg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        text-align: center;
+        transition: background-color 0.5s ease;
+      }
+
+      h1 {
+        font-size: 3em;
+        font-weight: 700;
+        color: #c0392b;
+      }
+
+      h2 {
+        font-size: 2em;
+        color: #ffffff;
+        margin-top: 30px;
+      }
+      p {
+        font-size: 1.2em;
+        color: #471d1db1;
+      }
+
+      .qr-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 30px 0;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .qr-box {
+        width: 200px;
+        height: 200px;
+        border: 5px dashed #2d6a4f;
+        background-color: #fff;
+        border-radius: 20px;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .qr-box:hover {
+        transform: scale(1.05);
+        background-color: #eafff5;
+        cursor: pointer;
+      }
+
+      .qr-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1em;
+        color: #2d6a4f;
+        text-align: center;
+      }
+
+      .maskot-Kanan {
+        transform: rotate(15deg);
+        width: 150px;
+        height: auto;
+        animation: goyang 2s infinite ease-in-out;
+      }
+
+      .maskot {
+        width: 150px;
+        height: auto;
+        animation: goyang 2s infinite ease-in-out;
+      }
+
+      @keyframes goyang {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(2deg);
+        }
+        75% {
+          transform: rotate(-2deg);
+        }
+      }
+
+      .instructions {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #eaffd0;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 20px;
+      }
+
+      .instructions h2 {
+        color: #1b4332;
+      }
+
+      .instructions ul {
+        text-align: left;
+      }
+
+      .instructions li {
+        margin-bottom: 10px;
+      }
+
+      footer {
+        margin-top: 40px;
+        background-color: #c1fba4;
+        padding: 15px;
+        border-radius: 10px;
+        color: #1b4332;
+        font-weight: bold;
+        font-size: 1.1em;
+      }
+      #speaker-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #c1fba4;
+        border: none;
+        border-radius: 50%;
+        padding: 12px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+      }
+
+      #speaker-btn:hover {
+        background-color: #a3e4a2;
+      }
+      /* Tombol ganti tema */
+      #theme-btn {
+        position: fixed;
+        top: 70px;
+        right: 20px;
+        background-color: #ffd6e0;
+        border: none;
+        border-radius: 50%;
+        padding: 12px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+        z-index: 1000;
+      }
+
+      #theme-btn:hover {
+        background-color: #ffb6c1;
+      }
+
+      /* Tema Pink */
+      .pink-theme {
+        background-color: #ffe6f0;
+      }
+
+      .pink-theme h1 {
+        color: #fff;
+      }
+
+      .pink-theme p {
+        color: #772953;
+      }
+
+      .pink-theme .qr-box {
+        border-color: #d63384;
+      }
+
+      .pink-theme .qr-text {
+        color: #d63384;
+      }
+
+      .pink-theme .instructions {
+        background-color: #ffd6e0;
+      }
+
+      .pink-theme .instructions h2 {
+        color: #a31c5c;
+      }
+
+      .pink-theme footer {
+        background-color: #ffb6c1;
+        color: #8b2c5a;
+      }
+
+      .judul-baru {
+        font-family: 'Fredoka', sans-serif;
+        font-size: 3.2em;
+        font-weight: 700;
+        color: #ffffff;
+        background-color: #45b36b; /* hijau modern cerah */
+        padding: 20px 40px;
+        border-radius: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        border: 4px solid #1f6344;
+        position: relative;
+        top: -40px;
+        margin-bottom: 10px;
+        animation: fadeInDown 1s ease-out;
+      }
+
+      .pink-theme .judul-baru {
+        background-color: #f48fb1;
+        border-color: #ad1457;
+      }
+
+      .judul-baru::after {
+        content: '';
+        display: block;
+        width: 60%;
+        margin: 10px auto 0;
+        border-bottom: 4px dotted #ffffffaa;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Animasi untuk bagian-bagian isi */
+      .section {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeSlideUp 0.8s ease forwards;
+        animation-delay: 0.5s;
+      }
+
+      .section:nth-of-type(2) {
+        animation-delay: 0.7s;
+      }
+      .section:nth-of-type(3) {
+        animation-delay: 0.9s;
+      }
+      .section:nth-of-type(4) {
+        animation-delay: 1.1s;
+      }
+
+      @keyframes fadeSlideUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .about-list,
+      .story-list,
+      .how-list {
+        text-align: left;
+        list-style: none;
+        padding-left: 0;
+        font-size: 1.1em;
+        line-height: 1.6;
+      }
+
+      .about-list li,
+      .story-list li,
+      .how-list li {
+        margin-bottom: 10px;
+      }
+
+      .highlight {
+        color: #e74c3c;
+        font-weight: bold;
+      }
+
+      .section p,
+      .section ul,
+      .section ol {
+        text-align: center;
+      }
+      .section-box {
+        background-color: #eaffd0; /* hijau muda pastel */
+        border: 3px dashed #2d6a4f;
+        border-radius: 20px;
+        padding: 30px 20px;
+        margin: 30px auto;
+        max-width: 800px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: background-color 0.4s;
+      }
+
+      /* Tema pink */
+      .pink-theme .section-box {
+        background-color: #ffe0eb; /* pink lembut pastel */
+        border-color: #d63384;
+      }
+      .pink-theme .nav-btn {
+        background-color: #ffb6c1;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-size: 1.5em;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;
+      }
+
+      .pink-theme .nav-btn:hover {
+        background-color: #ffb6c1;
+      }
+
+      .pink-theme .section-box {
+        border-color: #d63384;
+        background-color: #fff0f5;
+      }
+      .section-box {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeSlideUp 0.8s ease forwards;
+      }
+
+      .section-box:nth-of-type(1) {
+        animation-delay: 0.5s;
+      }
+      .section-box:nth-of-type(2) {
+        animation-delay: 0.7s;
+      }
+      .section-box:nth-of-type(3) {
+        animation-delay: 0.9s;
+      }
+      .section-box:nth-of-type(4) {
+        animation-delay: 1.1s;
+      }
+      .qr-img {
+        width: 220px;
+        height: auto;
+      }
+
+      /* LAYOUT CAROUSEL YANG DIPERBAIKI */
+      .carousel-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .carousel {
+        width: 260px;
+        height: auto;
+        overflow: hidden;
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .qr-item {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .qr-item img {
+        width: 220px;
+        height: auto;
+        border: 5px dashed #2d6a4f;
+        border-radius: 20px;
+        background-color: #fff;
+      }
+
+      .qr-item p {
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 1.1em;
+        color: #2c3e50;
+      }
+
+      .qr-item.active {
+        display: flex;
+      }
+
+      /* Tombol navigasi */
+      .nav-btn {
+        background-color: #c1fba4;
+        border: none;
+        padding: 15px 20px;
+        border-radius: 15px;
+        font-size: 2em;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+        min-width: 70px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-btn:hover {
+        background-color: #a3e4a2;
+        transform: scale(1.1);
+      }
+
+      /* Maskot di samping */
+      .maskot-samping {
+        width: 250px;
+        height: auto;
+        animation: goyang 2s infinite ease-in-out;
+        flex-shrink: 0;
+      }
+
+      .maskot-kiri {
+        transform: scaleX(-1); /* Mirror untuk menghadap ke kanan */
+      }
+
+      .maskot-kanan {
+        transform: rotate(45deg);
+      }
+
+      #quiz-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #f9c74f;
+        border: none;
+        border-radius: 50%;
+        padding: 15px;
+        font-size: 28px;
+        text-decoration: none;
+        color: #fff;
+        text-align: center;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+      }
+
+      #quiz-btn:hover {
+        background-color: #f9844a;
+      }
+
+      a.nav-btn {
+        display: inline-block;
+        background-color: #c1fba4;
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-size: 1.2em;
+        text-decoration: none;
+        color: #2c3e50;
+        margin: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;
+      }
+
+      a.nav-btn:hover {
+        background-color: #a3e4a2;
+      }
+
+      .next-question-btn {
+        background-color: #c1fba4;
+        color: #2c3e50;
+        font-size: 1.5em;
+        font-weight: 800;
+        padding: 18px 30px;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        margin-top: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        display: inline-block;
+      }
+
+      .next-question-btn:hover {
+        background-color: #c1fba4;
+        transform: translateY(-3px) scale(1.05);
+      }
+
+      .maskotl {
+        width: 215px;
+      }
+      .maskotr {
+        width: 215px;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .carousel-container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-btn {
+          font-size: 1.8em;
+          padding: 12px 16px;
+          min-width: 60px;
+          height: 50px;
+        }
+
+        .maskot-samping {
+          width: 100px;
+        }
+
+        .nav-buttons {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+        }
+      }
+    </style>
     <link
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap"
       rel="stylesheet"
@@ -17,7 +526,6 @@
     </audio>
 
     <!-- TOMBOL -->
-    <!-- TOMBOL -->
     <button id="speaker-btn" title="Hidupkan/Matikan Musik">🔇</button>
     <button id="theme-btn" title="Ganti Tema">🎨</button>
 
@@ -25,45 +533,34 @@
     <a href="quiz.html" id="quiz-btn" title="Mainkan Kuis Tebak Hewan!">🦁❓</a>
 
     <img
-      src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWlqNnhuZWN0a2dhanppeDB2MGYxb2N5b2lsbGs0NTFoNnVjMmFtMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/QB2m8ipKoKE6BvQeNP/giphy.gif"
+      src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3dmcmlnMmYyMWhoazhsY2U2bzdzZ2IzbzAzMmZ4bGJma2FsNWYyOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/4NrHPbcWi1P7waeYjb/giphy.gif"
       alt="Maskot Kiri"
-      class="maskot kiri"
+      class="maskotl"
     />
     <h1 class="judul-baru">Predatoria</h1>
     <img
-      src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWlqNnhuZWN0a2dhanppeDB2MGYxb2N5b2lsbGs0NTFoNnVjMmFtMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/QB2m8ipKoKE6BvQeNP/giphy.gif"
+      src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3dmcmlnMmYyMWhoazhsY2U2bzdzZ2IzbzAzMmZ4bGJma2FsNWYyOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/4NrHPbcWi1P7waeYjb/giphy.gif"
       alt="Maskot Kanan"
-      class="maskot-Kanan"
+      class="maskotr"
     />
-
-    <!-- ABOUT US
-    <div class="section-box">
-      <div class="section">
-        <h2>ABOUT US 🧠</h2>
-        <ul class="about-list">
-          <li>
-            <strong>Nama:</strong> <span class="highlight">PREDATORIA</span>
-          </li>
-          <li>
-            <strong>Teknologi:</strong>
-            <span class="highlight">Augmented Reality</span>
-          </li>
-        </ul>
-      </div>
-    </div> -->
 
     <!-- SCAN HERE -->
     <div class="section">
       <h2>SCAN HERE!</h2>
       <div class="qr-container">
-        <!-- <img
-          src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjJueDNqc3J1NWk0NG4wNWkwa3Zobndtancwcm5xOWdtOHlxNnp1cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1ezBmYXT1ccSbh0fep/giphy.gif"
-          alt="Maskot Kiri"
-          class="maskot kiri"
-        /> -->
-
         <div class="carousel-container">
+          <!-- Maskot Kiri -->
+          <img
+            id="maskot-kiri"
+            src="https://media.giphy.com/media/YoGDcCJPXnKJXnLKJE/giphy.gif"
+            alt="Maskot Kiri"
+            class="maskot-samping maskot-kiri"
+          />
+
+          <!-- Tombol Previous -->
           <button class="nav-btn" id="prevBtn">⬅️</button>
+
+          <!-- Carousel QR -->
           <div class="carousel" id="carousel">
             <div class="qr-item active">
               <img src="song/Singa.png" alt="Singa" />
@@ -78,23 +575,23 @@
               <h2>Harimau</h2>
             </div>
             <div class="qr-item">
-              <img src="song/rubah.jpg" alt="Harimau" />
+              <img src="song/rubah.jpg" alt="Rubah" />
               <h2>Rubah</h2>
             </div>
             <div class="qr-item">
-              <img src="song/uler.png" alt="Harimau" />
+              <img src="song/uler.png" alt="Ular" />
               <h2>Ular</h2>
             </div>
             <div class="qr-item">
-              <img src="song/hiu.png" alt="Harimau" />
+              <img src="song/hiu.png" alt="Hiu" />
               <h2>Hiu</h2>
             </div>
             <div class="qr-item">
-              <img src="song/Bhantu.jpg" alt="Harimau" />
+              <img src="song/Bhantu.jpg" alt="Burung Hantu" />
               <h2>Burung Hantu</h2>
             </div>
             <div class="qr-item">
-              <img src="song/elang.jpg" alt="Harimau" />
+              <img src="song/elang.jpg" alt="Elang" />
               <h2>Elang</h2>
             </div>
             <div class="qr-item">
@@ -102,50 +599,68 @@
               <h2>Serigala</h2>
             </div>
             <div class="qr-item">
-              <img src="song/kucing.jpg" alt="Serigala" />
+              <img src="song/kucing.jpg" alt="Kucing" />
               <h2>Kucing</h2>
             </div>
             <div class="qr-item">
-              <img src="song/piranha.png" alt="Serigala" />
+              <img src="song/piranha.png" alt="Piranha" />
               <h2>Piranha</h2>
             </div>
             <div class="qr-item">
-              <img src="song/kelelawar.png" alt="Serigala" />
+              <img src="song/kelelawar.png" alt="Kelelawar" />
               <h2>Kelelawar</h2>
             </div>
             <div class="qr-item">
-              <img src="song/komodo.png" alt="Serigala" />
+              <img src="song/komodo.png" alt="Komodo" />
               <h2>Komodo</h2>
             </div>
             <div class="qr-item">
-              <img src="song/buaya.jpg" alt="Serigala" />
+              <img src="song/buaya.jpg" alt="Buaya" />
               <h2>Buaya</h2>
             </div>
             <div class="qr-item">
-              <img src="song/gagak.jpg" alt="Serigala" />
+              <img src="song/gagak.jpg" alt="Gagak" />
               <h2>Gagak</h2>
             </div>
             <div class="qr-item">
-              <img src="song/labalabaT.jpg" alt="Serigala" />
+              <img src="song/labalabaT.jpg" alt="Laba Laba T" />
               <h2>Laba Laba T</h2>
             </div>
-             <div class="qr-item">
-              <img src="song/rubahT.jpg" alt="Serigala" />
+            <div class="qr-item">
+              <img src="song/rubahT.jpg" alt="Rubah T" />
               <h2>Rubah T</h2>
             </div>
-             <div class="qr-item">
-              <img src="song/serigalaT.jpg" alt="Serigala" />
+            <div class="qr-item">
+              <img src="song/serigalaT.jpg" alt="Serigala T" />
               <h2>Serigala T</h2>
             </div>
+            <div class="qr-item">
+              <img src="song/kelabang.png" alt="Serigala T" />
+              <h2>Kelabang</h2>
+            </div>
+            <div class="qr-item">
+              <img src="song/Alaut.png" alt="Serigala T" />
+              <h2>Anjing Laut</h2>
+            </div>
           </div>
+
+          <!-- Tombol Next -->
           <button class="nav-btn" id="nextBtn">➡️</button>
+
+          <!-- Maskot Kanan -->
+          <img
+            id="maskot-kanan"
+            src="https://media.giphy.com/media/YoGDcCJPXnKJXnLKJE/giphy.gif"
+            alt="Maskot Kanan"
+            class="maskot-samping maskot-kanan"
+          />
         </div>
 
-        <!-- <img
-          src="https://media.giphy.com/media/VM1fcpu2bKs1e2Kdbj/giphy.gif"
-          alt="Maskot Kanan"
-          class="maskot kanan"
-        /> -->
+        <!-- Tombol navigasi untuk mobile -->
+        <div class="nav-buttons" style="display: none">
+          <button class="nav-btn" id="prevBtnMobile">⬅️</button>
+          <button class="nav-btn" id="nextBtnMobile">➡️</button>
+        </div>
       </div>
     </div>
 
@@ -155,6 +670,143 @@
       </p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+      console.log('Selamat datang di Kebun Binatang Virtual!');
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const qrBox = document.querySelector('.qr-box');
+        const bgMusic = document.getElementById('bg-music');
+        const speakerBtn = document.getElementById('speaker-btn');
+        const themeBtn = document.getElementById('theme-btn');
+        let isPink = false;
+
+        // Mainkan musik setelah klik pertama
+        const enableMusic = () => {
+          bgMusic.muted = false;
+          bgMusic.play();
+          speakerBtn.textContent = '🔊';
+          document.body.removeEventListener('click', enableMusic);
+        };
+        document.body.addEventListener('click', enableMusic);
+
+        if (qrBox) {
+          qrBox.addEventListener('click', function () {
+            alert('Kamu siap menjelajahi dunia hewan!');
+          });
+        }
+
+        document.body.style.backgroundColor = '#e0ffe0';
+
+        speakerBtn.addEventListener('click', function () {
+          if (bgMusic.paused) {
+            bgMusic.play();
+            bgMusic.muted = false;
+            speakerBtn.textContent = '🔊';
+          } else {
+            bgMusic.pause();
+            speakerBtn.textContent = '🔇';
+          }
+        });
+
+        // Ganti tema
+        themeBtn.addEventListener('click', function () {
+          isPink = !isPink;
+          if (isPink) {
+            document.body.classList.add('pink-theme');
+            document.body.style.backgroundColor = '#ffe6f0';
+          } else {
+            document.body.classList.remove('pink-theme');
+            document.body.style.backgroundColor = '#e0ffe0';
+          }
+        });
+
+        const qrItems = document.querySelectorAll('.qr-item');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtnMobile = document.getElementById('prevBtnMobile');
+        const nextBtnMobile = document.getElementById('nextBtnMobile');
+        const maskotKiri = document.getElementById('maskot-kiri');
+        const maskotKanan = document.getElementById('maskot-kanan');
+        let currentIndex = 0;
+
+        // Array GIF hewan sesuai urutan QR
+        const animalGifs = [
+          'https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3cHF1eHQ4bjVxaHp2djNxYWk4ajQ3aGVub3l1Mmw4MWY1cTlteWY1aCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/BWThrrVNXy6FzcPdKc/giphy.gif', //singa
+          'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXZ3M3d0OGU0YnlkajAzcmxtYmdtNHB2Z2p3bXk3MHZmMHhwd2tlZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/6Kc9hbNxLmA4pWHPB7/giphy.gif', // Beruang Kutub
+          'https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NTByN25ub2RncXh2cmc3b2I0YnU1eTh3emJkbGU1d3RrNmE1dW9wZCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/92ie9JwQYwbOYus398/giphy.gif', // Harimau
+          'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGZ3ZTZ4NTYza3I3OXBvc3kzOTV6M21oaGRiZnR6Zmg3YWJieHBycSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/zYopjprJ4ZtosuPtxu/giphy.gif', // Rubah
+          'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzBwbjR5OHRkZnlhM3E0OHY1Z2xteXl0M2R0eHBzMmJpZDB5bmtpMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/emyVVcjApSh5Dwan4d/giphy.gif', // Ular
+          'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExem1sbHAxb2NxcXpsZmhxaHpjbW94OXh5MTI1aXBnNHI5cmpyOXF2ZSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/1rpYkOqbw1p0rRDebe/giphy.gif', // Hiu
+          'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmNqYjhyY28yYm80N3R2N2U2dGt0MHlvcmYwdmFnM2V2M2pzcTQ3ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vkmyA2b3dPjMoXfJnw/giphy.gif', // Burung Hantu
+          'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjhmN2RhdXpodXU4amxtb2ZiMTVwdGJ0d213ajU3NHA2NjNjcWZuaiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/Dtm2PNR0zB798943HP/giphy.gif', // Elang
+          'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGd4Nm00eWdqaHFrZjRjZnkxbXppcWY4NmhodXpmMjJmYmI5dmh6OSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/zMWt3q1hjRopwWOy9L/giphy.gif', // Serigala
+          'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTA2aHAxMWRlN2hzOGFvdXp1cGswMmNta3M0ZjFuOW1lYXY2OXRxcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/26DN81TqLPIzBlksw/giphy.gif', // Kucing
+          'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDh6eHVyeWRvbjlxdG54ZmxiMnF0NHRyeWFnb29uZm1zNHY2eXI2eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/pDdh4L9infIjwIhIWY/giphy.gif', // Piranha
+          'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmU4dXlzaG5odTJsNHQwNDNhZTh1d3NiOXNsMmI4bG82bWtzeTF5MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/1ZarZWgNtKZvUVPMea/giphy.gif', // Kelelawar
+          'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDJncmgzbXR2eDU2MG81ZjFldXA5Yjloems4YnZlejZ3ajF4amN0dyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/pDtIsbGHpEgP5QgCXj/giphy.gif', // Komodo
+          'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGtsaHllemM5N2t4dXkwb3pjMmxrdDc2MzBoYW11cnBobDM1M20xciZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/HOhXhNm3YMb9EAZK3i/giphy.gif', // Buaya
+          'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDFjODNwNG50dDYyeDI2OW1qbnBtcjd2ZWZzdnAzYTNsaGlseWJ1aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/eH9z4SCVvKslswrCSE/giphy.gif', // Gagak
+          'https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NW8ydHZ2MHIzdHRxYm5peWhmcGIwenhjdWw3am02MHZmc3Y2ZHd2ZCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/vzMQPqXEXOP2jAYaJc/giphy.gif', // Laba Laba T
+          'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGZ3ZTZ4NTYza3I3OXBvc3kzOTV6M21oaGRiZnR6Zmg3YWJieHBycSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/zYopjprJ4ZtosuPtxu/giphy.gif', // Rubah T
+          'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGd4Nm00eWdqaHFrZjRjZnkxbXppcWY4NmhodXpmMjJmYmI5dmh6OSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/zMWt3q1hjRopwWOy9L/giphy.gif',
+          'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3F6NDdhcnUxcnBlZzFqbjBieXVnbDZqYTBoNjA3b2xodHh0ZnNnbiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/l1J9ymkGP6ctILjkQ/giphy.gif',
+          'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExczFhdWh2OG56YWRuZjVteGlsbzZ1cTRyd3Q1M2E4azRiazBuNmo1MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/LqHgokUCoQj6KINaCr/giphy.gif', // Serigala T
+        ];
+
+        function showQR(index) {
+          qrItems.forEach((item, i) => {
+            item.classList.toggle('active', i === index);
+          });
+
+          // Update GIF maskot sesuai hewan yang aktif
+          if (maskotKiri && maskotKanan && animalGifs[index]) {
+            maskotKiri.src = animalGifs[index];
+            maskotKanan.src = animalGifs[index];
+          }
+        }
+
+        function prevSlide() {
+          currentIndex = (currentIndex - 1 + qrItems.length) % qrItems.length;
+          showQR(currentIndex);
+        }
+
+        function nextSlide() {
+          currentIndex = (currentIndex + 1) % qrItems.length;
+          showQR(currentIndex);
+        }
+
+        // Event listeners untuk tombol desktop
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Event listeners untuk tombol mobile
+        if (prevBtnMobile && nextBtnMobile) {
+          prevBtnMobile.addEventListener('click', prevSlide);
+          nextBtnMobile.addEventListener('click', nextSlide);
+        }
+
+        // Responsive design
+        function checkScreenSize() {
+          const isMobile = window.innerWidth <= 768;
+          const navButtons = document.querySelector('.nav-buttons');
+          const desktopButtons = document.querySelectorAll(
+            '.carousel-container > .nav-btn'
+          );
+
+          if (isMobile) {
+            navButtons.style.display = 'flex';
+            desktopButtons.forEach((btn) => (btn.style.display = 'none'));
+          } else {
+            navButtons.style.display = 'none';
+            desktopButtons.forEach((btn) => (btn.style.display = 'flex'));
+          }
+        }
+
+        window.addEventListener('resize', checkScreenSize);
+        checkScreenSize();
+
+        showQR(currentIndex);
+      });
+    </script>
   </body>
 </html>
